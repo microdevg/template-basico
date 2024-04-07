@@ -1,8 +1,11 @@
 #include <stdio.h>
 
-#include "driver/gpio.h"
+
+#include "src.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "driver/gpio.h"
+
 
 
 #define GPIO_LED        2
@@ -37,7 +40,7 @@ void app_main(void)
         }
 
         //Esperamos el periodo de tiempo DELAY_MS cuyo valor esta es milisegundos
-         vTaskDelay(DELAY_MS / portTICK_PERIOD_MS);
+         vTaskDelay(get_value_delay()/ portTICK_PERIOD_MS);
 
     }
 

@@ -1,32 +1,49 @@
-# _Sample project_
+# _Ejemplo simple: gpio blink y uso de modulos externos_
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
-
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+En ese ejemplo se realizo el parpadeo de un led en la placa de desarrollo con el ESP32.
 
 
+Recuerde el flujo de trabajo para utilizar este repositorio es:
+-   **Compilar** el codigo del proyecto
+-   **Flashear** el codigo en la placa
+-   **Monitorizar** el puerto utilizado y ver los mensajes que se envian desde el microcontrolador.
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
 
-## Example folder contents
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
+## Como usar el ejemplo 
+Una vez instalado el extension ESP-IDF-explorer en Visual studio Code iniamos el plugin haciendo click en la barra lateral irquierda.
 
-Below is short explanation of remaining files in the project folder.
+<img src="./imgs/menu_lateral.jpg" style="margin: 10px;">
+
+Luego nos manejamos con el menu inferior.
+
+<img src="./imgs/menu_esp_idf.jpg" style="margin: 10px;">
+
+-   ESP-IDF: Build project
+-   ESP-IDF: Flash Device
+-   ESP-IDF: Monitor
+
+## Contenido de las carpetas
+
+Este proyecto tiene un formato de distribución de directorios que permite realizar una aplicación principal (dentro de la carpeta 'main') que esté basada en piezas de código con diseño modular llamadas componentes.
+
+ESP-IDF utiliza un sistema de compilación (building) basado en CMake, una herramienta que utiliza archivos de nombre `CMakeLists.txt` para configurar el proceso.
+
+A continuación se presenta el formato de distribución de carpetas de este proyecto.
+
 
 ```
-├── CMakeLists.txt
+├── CMakeLists.txt                  Configuracion del proyecto
 ├── main
-│   ├── CMakeLists.txt
+│   ├── CMakeLists.txt              Configuracion del main
 │   └── main.c
-└── README.md                  This is the file you are currently reading
+├── components                      Componentes externos
+|   ├── moduloA                     Modulo A
+|       ├── CMakeLists.txt          Configuracion del moduloA
+│       ├── include                 Carpeta con archivos .h
+│       |   └── src.h           
+│       └── src.c                   Codigo fuente del modulo
+└── README.md                       Estas leyendo este archivo
 ```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+

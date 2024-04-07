@@ -18,5 +18,5 @@ list(APPEND EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/components")
 
 
 
-
+# Nombre del proyecto
 project(gpio)

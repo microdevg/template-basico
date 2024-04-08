@@ -27,7 +27,6 @@ static int enable = 0;
 
 // Manejo de GPIO usando interrupciones
 static void IRAM_ATTR gpio_isr_handler(void* args){
-    //printf("Interrupcion activada \n");
     //Habilita el parpadeo del led
     enable = 1;
 
@@ -46,7 +45,7 @@ void app_main(void)
     gpio_set_intr_type(GPIO_IRQ,GPIO_INTR_POSEDGE);
     
     // Pull up : OPCIONES GPIO_PULLUP_ONLY, GPIO_PULLDOWN_ONLY , GPIO_PULLUP_PULLDOWN, GPIO_FLOATING
-    gpio_set_pull_mode(GPIO_IRQ,GPIO_PULLUP_ONLY);
+    gpio_set_pull_mode(GPIO_IRQ,GPIO_PULLDOWN_ONLY);
 
     //Configurar la funcion que se ejecuta con la interrupcion (handler: manejador)
     gpio_install_isr_service (ESP_INTR_FLAG_IRAM);
@@ -73,7 +72,10 @@ void app_main(void)
 
         if(enable == 1){
         //Cuando led_status es 0 se apaga el led, caso contrario se enciende.    
-        gpio_set_level(GPIO_LED,led_status);
+       printf("Iniciando el blink.\n");
+       
+       while(1){
+         gpio_set_level(GPIO_LED,led_status);
 
         if(led_status == 0)
         {  led_status = 1;
@@ -82,14 +84,12 @@ void app_main(void)
         { 
             led_status = 0;
         }
-
-        //Esperamos el periodo de tiempo DELAY_MS cuyo valor esta es milisegundos
-
-
-        }
-
-        
          vTaskDelay(get_value_delay()/ portTICK_PERIOD_MS);
+        }
+        
+       }
+       
+         vTaskDelay(10/ portTICK_PERIOD_MS);
 
     }
 

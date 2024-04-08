@@ -47,3 +47,15 @@ A continuación se presenta el formato de distribución de carpetas de este proy
 └── README.md                       Estas leyendo este archivo
 ```
 
+
+
+
+
+### Placa utilizada ESP32 WROOM-32
+
+
+<img src="./imgs/esp32-wroom.png" style="margin: 10px;">
+
+
+
+

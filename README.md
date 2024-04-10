@@ -47,3 +47,38 @@ A continuación se presenta el formato de distribución de carpetas de este proy
 └── README.md                       Estas leyendo este archivo
 ```
 
+
+### Configurar el autocompletado:
+
+La documentacion para configurar el autocompletado es [documentacion](https://code.visualstudio.com/docs/cpp/c-cpp-properties-schema-reference#_example-of-variables). Resumen: necesitas un archivo `c_cpp_properties.json` en tu carpeta de trabajo con la siguiente configuracion
+
+```
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "includePath": [
+                "${config:idf.espIdfPath}/components/**",
+                "${config:idf.espIdfPathWin}/components/**",
+                "${config:idf.espAdfPath}/components/**",
+                "${config:idf.espAdfPathWin}/components/**",
+                "${workspaceFolder}/**"
+            ],
+            "browse": {
+                "path": [
+                    "${config:idf.espIdfPath}/components",
+                    "${config:idf.espIdfPathWin}/components",
+                    "${config:idf.espAdfPath}/components/**",
+                    "${config:idf.espAdfPathWin}/components/**",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": false
+            }
+        }
+    ],
+    "version": 4
+}
+```
+
